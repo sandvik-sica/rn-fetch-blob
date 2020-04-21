@@ -600,7 +600,7 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                     if (responseBody != null) {
                         String responseBodyString = null;
                         try {
-                            responseBodyString = responseBody.string();
+                            responseBodyString = resp.peekBody(Long.MAX_VALUE).string();
                         } catch(IOException exception) {
                             exception.printStackTrace();
                         }
