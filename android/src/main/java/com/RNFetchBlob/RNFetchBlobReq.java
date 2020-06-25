@@ -808,6 +808,7 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                 }
 
             }
+            appCtx.unregisterReceiver(this);
         }
     }
 
