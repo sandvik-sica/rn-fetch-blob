@@ -129,15 +129,24 @@ public class PathResolver {
     }
 
     private static String getContentName(ContentResolver resolver, Uri uri) {
-        Cursor cursor = resolver.query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
-        if (nameIndex >= 0) {
-            String name = cursor.getString(nameIndex);
-            cursor.close();
-            return name;
+        Cursor cursor = null;
+        try {
+            cursor = resolver.query(uri, null, null, null, null);
+            if (cursor == null) {
+                return null;
+            }
+            cursor.moveToFirst();
+            int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
+            if (nameIndex >= 0) {
+                String name = cursor.getString(nameIndex);
+                return name;
+            }
+            return null;
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        return null;
     }
 
     /**
