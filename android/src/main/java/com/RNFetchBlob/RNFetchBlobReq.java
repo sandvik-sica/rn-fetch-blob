@@ -747,7 +747,6 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                 DownloadManager.Query query = new DownloadManager.Query();
                 query.setFilterById(downloadManagerId);
                 DownloadManager dm = (DownloadManager) appCtx.getSystemService(Context.DOWNLOAD_SERVICE);
-                dm.query(query);
                 Cursor c = dm.query(query);
                 // #236 unhandled null check for DownloadManager.query() return value
                 if (c == null) {
