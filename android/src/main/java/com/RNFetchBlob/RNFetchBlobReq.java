@@ -782,6 +782,7 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                     if (c != null) {
                         c.close();
                     }
+                    appCtx.unregisterReceiver(this);
                 }
 
                 // When the file is not found in media content database, check if custom path exists
@@ -807,7 +808,6 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
                 }
 
             }
-            appCtx.unregisterReceiver(this);
         }
     }
 
